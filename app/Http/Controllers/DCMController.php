@@ -87,13 +87,29 @@ class DCMController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_alternatif)
     {
-        $alternatif = Alternatif::findOrFail($id);
-        $kriteria = Kriteria::all();
-        $decisionMatrix = DecisionMatrix::where('id_alternatif', $id)->get();
+        // Ambil data Decision Matrix berdasarkan id_alternatif
+        $matrixData = DecisionMatrix::where('id_alternatif', $id_alternatif)->get();
 
-        return view('Edas.editDecisionMatrix', compact('alternatif', 'kriteria', 'decisionMatrix'));
+        // Jika tidak ada data, kembalikan ke view dengan pesan
+        if ($matrixData->isEmpty()) {
+            return redirect()->route('decision_matrix.index')->with('error', 'Tidak ada data Decision Matrix untuk alternatif ini.');
+        }
+
+        // Ambil alternatif dan kriteria
+        $alternatif = Alternatif::findOrFail($id_alternatif);
+        $kriteria = Kriteria::all();
+
+        // Buat array untuk menyimpan data yang akan ditampilkan di view
+        $matrixTable = [];
+
+        // Loop untuk menyusun data ke samping berdasarkan id_alternatif
+        foreach ($matrixData as $data) {
+            $matrixTable[$data->id_kriteria] = $data->value;
+        }
+
+        return view('Edas.editDecisionMatrix', compact('alternatif', 'kriteria', 'matrixTable'));
     }
 
     /**
@@ -103,21 +119,17 @@ class DCMController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_alternatif)
     {
         $this->validate($request, [
-            'value_*' => 'required|numeric',
+            'value.*' => 'required|numeric', // Validasi untuk setiap nilai
         ]);
 
         try {
-            $decisionMatrix = DecisionMatrix::where('id_alternatif', $id)->get();
-            foreach ($decisionMatrix as $dec) {
-                foreach ($request->input('value') as $kriteriaId => $value) {
-                    if ($dec->id_kriteria == $kriteriaId) {
-                        $dec->value = $value;
-                        $dec->save();
-                    }
-                }
+            foreach ($request->value as $id_kriteria => $value) {
+                DecisionMatrix::where('id_alternatif', $id_alternatif)
+                    ->where('id_kriteria', $id_kriteria)
+                    ->update(['value' => $value]);
             }
 
             return redirect()->route('decision_matrix.index')->with('success', 'Nilai Decision Matrix berhasil diperbarui.');
