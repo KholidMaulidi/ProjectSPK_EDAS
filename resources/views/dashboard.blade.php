@@ -8,6 +8,11 @@
                     <h2 class="section-title fontjudul">Dashboard</h2>
                     <p class="section-lead">Selamat Datang di Sistem Pendukung Keputusan Pemilihan Karyawan Terbaik
                         Menggunakan Metode EDAS</p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt harum corrupti id amet, quisquam
+                        repudiandae, placeat perspiciatis iure similique facere adipisci quas ut distinctio eius molestias
+                        consectetur fugiat consequuntur iusto!
+                    </p>
 
                 </div>
                 <h2 class="section-title">Artikel</h2>
