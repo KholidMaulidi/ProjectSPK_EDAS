@@ -29,6 +29,11 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+//route ke file login
+route::get('/login', function () {
+    return view('login');
+});
+
 Route::resource('kriteria', KriteriaController::class);
 Route::resource('alternatif', AlternatifController::class);
 Route::resource('decfi', DCMController::class);
