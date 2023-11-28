@@ -2,7 +2,7 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="./index.html" class="text-nowrap logo-img">
+            <a href="..\assets\images\logos\favicon.png" class="text-nowrap logo-img">
                 <img src="{{ asset('/assets/images/logos/dark-logo.svg') }}" width="180" alt="" />
                 <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
             </a>
