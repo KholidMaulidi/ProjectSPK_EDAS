@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('alternatif');
+    return view('dashboard');
 });
 
 Route::resource('kriteria', KriteriaController::class);
