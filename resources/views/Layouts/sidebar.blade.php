@@ -66,7 +66,7 @@
                         <span>
                             <i class="ti ti-typography"></i>
                         </span>
-                        <span class="hide-menu">Typography</span>
+                        <span class="hide-menu">Hasil</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">

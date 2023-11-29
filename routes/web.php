@@ -29,9 +29,9 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-//route ke file login
-route::get('/login', function () {
-    return view('login');
+//route ke file hasil
+route::get('/hasil', function () {
+    return view('hasil');
 });
 
 Route::resource('kriteria', KriteriaController::class);
