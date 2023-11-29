@@ -1,10 +1,10 @@
 @extends('index')
 
 @section('content')
-    <div class="card-body p-4">
+    <div class="card-body p-4 shadow rounded">
         <h5 class="card-title fw-semibold mb-4">KRITERIA</h5>
-        <div class="table-responsive">
-            <table border="1" cellspacing="0" cellpadding="20" class="table text-nowrap mb-0 align-middle">
+        <div class="table-responsive table-striped table-bordered">
+            <table border="1" class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr>
                         <th class="border-bottom-0">

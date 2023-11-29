@@ -38,7 +38,7 @@
         </div>
     </form>
 
-    <div class="card-body p-4">
+    <div class="card-body p-4 shadow rounded">
         <h5 class="card-title fw-semibold mb-4">ALTERNATIF</h5>
         <div class="table-responsive">
             <table class="table text-nowrap mb-0 align-middle">

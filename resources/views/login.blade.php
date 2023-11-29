@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
     <style>
         body {
-            background-color: rgba(45, 111, 128, 0.942) 154, 184;
+            background-color: #477c94;
         }
     </style>
 </head>
