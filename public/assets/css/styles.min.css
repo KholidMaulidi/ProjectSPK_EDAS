@@ -17,8 +17,8 @@
     display: grid;
     place-items: center;
     /* justify-content: center; */
-    margin-bottom: 100px;
-
+    margin-bottom: 50px;
+    /* background-color: #0ea78b; */
 
 }
 
@@ -27,7 +27,7 @@
     justify-content: center;
     align-items: center;
     max-width: 100%;
-    height: auto;
+    /* height: auto; */
 }
 
 

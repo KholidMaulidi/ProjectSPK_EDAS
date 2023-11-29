@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+    <style>
+        body {
+            background-color: rgba(45, 111, 128, 0.942) 154, 184;
+        }
+    </style>
 </head>
 
 <body>
@@ -79,7 +84,7 @@
 
 
                             </div>
-                            <div class=" text-muted text-center">
+                            <div class=" text-muted text-center pb-5">
                                 Don't have an account? <a href="auth-register.html">Create One</a>
                             </div>
 
