@@ -26,13 +26,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('auth.login');
 });
 
-//route ke file hasil
-route::get('/hasil', function () {
-    return view('hasil');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('home', function () {
+        return view('dashboard');
+    })->name('home');
 });
+
+
+// Route::get('/register', function () {
+//     return view('auth.register');
+// });
+
+
+
+//route ke file hasil
+// route::get('/hasil', function () {
+//     return view('hasil');
+// });
+
 
 Route::resource('kriteria', KriteriaController::class);
 Route::resource('alternatif', AlternatifController::class);
