@@ -37,12 +37,13 @@
                                 <i class="ti ti-mail fs-6"></i>
                                 <p class="mb-0 fs-3">My Account</p>
                             </a>
-                            <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                <i class="ti ti-list-check fs-6"></i>
-                                <p class="mb-0 fs-3">My Task</p>
-                            </a>
-                            <a href="./authentication-login.html"
-                                class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+
+                            <a href="#" class="btn btn-outline-primary mx-3 mt-2 d-block"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
+                                <i class="ti ti-shift-right me-2"></i>Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </li>
