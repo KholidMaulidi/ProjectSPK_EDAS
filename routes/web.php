@@ -12,6 +12,7 @@ use App\Http\Controllers\NSPController;
 use App\Http\Controllers\SNController;
 use App\Http\Controllers\NSNController;
 use App\Http\Controllers\ASController;
+use App\Http\Controllers\hasilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('home', function () {
         return view('dashboard');
     })->name('home')->middleware('can:dashboard');
+
+
+    Route::get('/hasil', [hasilController::class, 'index'])->name('hasil');
+    Route::resource('kriteria', KriteriaController::class);
+    Route::resource('alternatif', AlternatifController::class);
+    Route::resource('decfi', DCMController::class);
+    Route::get('/average', [AverageController::class, 'index'])->name('average.index');
+    Route::get('/pda', [PdaController::class, 'index'])->name('pda.index');
+    Route::get('/nda', [NdaController::class, 'index'])->name('nda.index');
+    Route::get('/sp', [SPController::class, 'index'])->name('sp.index');
+    Route::get('/nsp', [NSPController::class, 'index'])->name('nsp.index');
+    Route::get('/sn', [SNController::class, 'index'])->name('sn.index');
+    Route::get('/nsn', [NSNController::class, 'index'])->name('nsn.index');
+    Route::get('/as', [ASController::class, 'index'])->name('as.index');
+    Route::get('/matrixCreate', [DecisionMatrixController::class, 'createForm'])->name('decision_matrix.create.form');
+    Route::post('/matrixSave', [DecisionMatrixController::class, 'save'])->name('decision_matrix.save');
+    Route::get('/matrix', [DecisionMatrixController::class, 'index'])->name('decision_matrix.index');
 });
 
 
@@ -44,22 +62,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 //route ke file hasil
-// route::get('/hasil', function () {
-//     return view('hasil');
-// });
-
-
-Route::resource('kriteria', KriteriaController::class);
-Route::resource('alternatif', AlternatifController::class);
-Route::resource('decfi', DCMController::class);
-Route::get('/average', [AverageController::class, 'index'])->name('average.index');
-Route::get('/pda', [PdaController::class, 'index'])->name('pda.index');
-Route::get('/nda', [NdaController::class, 'index'])->name('nda.index');
-Route::get('/sp', [SPController::class, 'index'])->name('sp.index');
-Route::get('/nsp', [NSPController::class, 'index'])->name('nsp.index');
-Route::get('/sn', [SNController::class, 'index'])->name('sn.index');
-Route::get('/nsn', [NSNController::class, 'index'])->name('nsn.index');
-Route::get('/as', [ASController::class, 'index'])->name('as.index');
-Route::get('/matrixCreate', [DecisionMatrixController::class, 'createForm'])->name('decision_matrix.create.form');
-Route::post('/matrixSave', [DecisionMatrixController::class, 'save'])->name('decision_matrix.save');
-Route::get('/matrix', [DecisionMatrixController::class, 'index'])->name('decision_matrix.index');
+route::get('/hasil', function () {
+    return view('hasil');
+}) -> name('hasil');

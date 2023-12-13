@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+    <link rel="shortcut icon" type="image/jpeg" href="../assets/images/logos/logo.jpeg" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}" />
