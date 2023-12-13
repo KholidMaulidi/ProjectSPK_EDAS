@@ -1,436 +1,253 @@
 @extends('index')
 @section('content')
+    {{-- average --}}
     <div class="container">
         <h1 style="padding-bottom: 20px">Hasil Perhitungan</h1>
-        {{-- 1. Menetukan matriks keputusan --}}
-        <div class="card-body p-4 shadow rounded">
-            <h5 class="card-title fw-semibold mb-4">Matriks Keputusan</h5>
-            <div class="table-responsive table-striped table-bordered">
-                <table border="1" class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
+
+
+
+        <div class="container">
+            {{-- @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif --}}
+
+            <h1>Data Average</h1>
+
+            @if (!empty($averageTable))
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Kriteria/Alternatif</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K1</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K2</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K3</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K4</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K5</h6>
-                            </th>
+                            <th>Kriteria</th>
+                            <th>Nilai Rata-Rata</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A1</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A2</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A3</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A4</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A5</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
+                        @foreach ($averageTable as $kriteriaId => $averageValue)
+                            <tr>
+                                <td>{{ $kriteriaId }}</td>
+                                <td>{{ $averageValue }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
-            </div>
+            @else
+                <p>Tidak ada data Average yang tersimpan.</p>
+            @endif
         </div>
-        {{-- 2. menentukan solusi rata-rata average solution (Av) --}}
-        <div class="card-body p-4 shadow rounded">
-            <h5 class="card-title fw-semibold mb-4">Nilai Rata-rata Average Solution (AV)</h5>
-            <div class="table-responsive table-striped table-bordered">
-                <table border="1" class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
+
+        <div class="container">
+            {{-- @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif --}}
+
+            <h1>Data Performance Degree of Agreement (PDA)</h1>
+
+            @if (!empty($pdaTable))
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">AV1</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">AV2</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">AV3</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">AV4</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">AV5</h6>
-                            </th>
+                            <th>Alternatif</th>
+                            @foreach ($kriteriaNames as $kriteriaId => $kriteriaName)
+                                <th>{{ $kriteriaName }}</th>
+                            @endforeach
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0"></h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
+                        @foreach ($pdaTable as $alternatifId => $kriteriaValues)
+                            <tr>
+                                <td>{{ $alternatifId }}</td>
+                                @foreach ($kriteriaNames as $kriteriaId => $kriteriaName)
+                                    <td>{{ $kriteriaValues[$kriteriaId] ?? '' }}</td>
+                                @endforeach
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
-            </div>
+            @else
+                <p>Tidak ada data Decision Matrix yang tersimpan.</p>
+            @endif
         </div>
-        {{-- 3. menentukan jarak positif dan jarak negatif dari rata-rata (PDA/NDA) --}}
-        <div class="card-body p-4 shadow rounded">
-            <h5 class="card-title fw-semibold mb-4">Nilai jarak positif dan negatif dari rata-rata (PDA/NDA)</h5>
-            <h6 class="card-title fw-semibold mb-4">PDA</h6>
-            <div class="table-responsive table-striped table-bordered">
-                <table border="1" class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
+
+
+        <div class="container">
+            {{-- @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif --}}
+
+            <h1>Data Performance Degree of Agreement (PDA)</h1>
+
+            @if (!empty($ndaTable))
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K1</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K2</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K3</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K4</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K5</h6>
-                            </th>
+                            <th>Alternatif</th>
+                            @foreach ($kriteriaNames as $kriteriaId => $kriteriaName)
+                                <th>{{ $kriteriaName }}</th>
+                            @endforeach
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
+                        @foreach ($ndaTable as $alternatifId => $kriteriaValues)
+                            <tr>
+                                <td>{{ $alternatifId }}</td>
+                                @foreach ($kriteriaNames as $kriteriaId => $kriteriaName)
+                                    <td>{{ $kriteriaValues[$kriteriaId] ?? '' }}</td>
+                                @endforeach
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
-            </div>
-            <h6 class="card-title fw-semibold mb-4">NDA</h6>
-            <div class="table-responsive table-striped table-bordered">
-                <table border="1" class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
-                        <tr>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K1</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K2</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K3</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K4</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">K5</h6>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            @else
+                <p>Tidak ada data Decision Matrix yang tersimpan.</p>
+            @endif
         </div>
-        {{-- 4. menentukan jumlah terbobot dari PDA/NDA (SP/SN) --}}
-        <div class="card-body p-4 shadow rounded">
-            <h5 class="card-title fw-semibold mb-4">Jumlah terbobot dari PDA/NDA (SP/SN)</h5>
-            <div class="table-responsive table-striped table-bordered">
-                <table border="1" class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
-                        <tr>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Alternatif</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">SP</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">SN</h6>
-                            </th>
 
+        <div class="container">
+            <h1>Susilo bambang (SP)</h1>
+
+            @if (!empty($spValues))
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Alternatif</th>
+                            @foreach ($spValues as $idAlternatif => $sp)
+                                <th>{{ $alternatifNames[$idAlternatif] }}</th>
+                            @endforeach
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A1</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A2</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A3</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A4</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
+                            <td>SP</td>
+                            @foreach ($spValues as $sp)
+                                <td>{{ $sp }}</td>
+                            @endforeach
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            @else
+                <p>Tidak ada data SP yang tersedia.</p>
+            @endif
         </div>
-        {{-- 5. normalisasi nilai SP/SN (NSP/NSN) --}}
-        <div class="card-body p-4 shadow rounded">
-            <h5 class="card-title fw-semibold mb-4">Normalisasi Nilai SP/SN (NSP/NSN)</h5>
-            <div class="table-responsive table-striped table-bordered">
-                <table border="1" class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
-                        <tr>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Alternatif</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">NSP</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">NSN</h6>
-                            </th>
 
+        <div class="container">
+            <h1>Susilo Nambang (SN)</h1>
+
+            @if (!empty($snValues))
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Alternatif</th>
+                            @foreach ($snValues as $idAlternatif => $sn)
+                                <th>{{ $alternatifNames[$idAlternatif] }}</th>
+                            @endforeach
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A1</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A2</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A3</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A4</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
+                            <td>SN</td>
+                            @foreach ($snValues as $sn)
+                                <td>{{ $sn }}</td>
+                            @endforeach
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            @else
+                <p>Tidak ada data SP yang tersedia.</p>
+            @endif
         </div>
-        {{-- 6. menghitung nilai skor penilaian (AS) --}}
-        <div class="card-body p-4 shadow rounded">
-            <h5 class="card-title fw-semibold mb-4">Hasil Perankingan</h5>
-            <div class="table-responsive table-striped table-bordered">
-                <table border="1" class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
-                        <tr>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Alternatif</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">AS</h6>
-                            </th>
 
+
+        <div class="container">
+            <h1>Normalized SP (NSP)</h1>
+
+            @if (!empty($nspValues))
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Alternatif</th>
+                            @foreach ($nspValues as $idAlternatif => $nspValue)
+                                <th>{{ $alternatifNames[$idAlternatif] }}</th>
+                            @endforeach
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A1</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A2</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A3</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">A4</h6>
-                            </td>
-                            <td class="border-bottom-0">
-                            </td>
+                            <td>NSP</td>
+                            @foreach ($nspValues as $nspValue)
+                                <td>{{ $nspValue }}</td>
+                            @endforeach
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            @else
+                <p>Tidak ada data NSP yang tersedia.</p>
+            @endif
         </div>
-    </div>
-@endsection
+
+        <div class="container">
+            <h1>Normalized SN (NSN)</h1>
+
+            @if (!empty($nsnValues))
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Alternatif</th>
+                            @foreach ($nsnValues as $idAlternatif => $nsnValue)
+                                <th>{{ $alternatifNames[$idAlternatif] }}</th>
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NSN</td>
+                            @foreach ($nsnValues as $nsnValue)
+                                <td>{{ $nsnValue }}</td>
+                            @endforeach
+                        </tr>
+                    </tbody>
+                </table>
+            @else
+                <p>Tidak ada data NSN yang tersedia.</p>
+            @endif
+        </div>
+
+
+        <div class="container">
+            <h1>Aggregated Score (AS) Ranking</h1>
+
+            @if (!empty($asValues))
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Ranking</th>
+                            <th>Alternatif</th>
+                            <th>AS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($ranking as $rank => $idAlternatif)
+                            <tr>
+                                <td>{{ $rank + 1 }}</td>
+                                <td>{{ $alternatifNames[$idAlternatif] }}</td>
+                                <td>{{ $asValues[$idAlternatif] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p>Tidak ada data AS yang tersedia.</p>
+            @endif
+        </div>
+    @endsection

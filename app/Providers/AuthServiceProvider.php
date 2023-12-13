@@ -10,7 +10,8 @@ class AuthServiceProvider extends ServiceProvider
 {
 
     public static $permissions = [
-        'dashboard' => ['admin', 'user'],
+        'dashboard' => ['user']
+
 
     ];
     /**
@@ -31,18 +32,27 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::before(
+            function (User $user) {
+                if ($user->role == 'admin') {
+                    return true;
+                }
+            }
+        );
+
         //
         // Gate::define('dashboard', function (User $user) {
-            // if ($user->role == 'admin' || $user->role == 'user') {
-            //     return true;
-            // }
+        // if ($user->role == 'admin' || $user->role == 'user') {
+        //     return true;
+        // }
 
         // });
         foreach (self::$permissions as $permission => $roles) {
             Gate::define($permission, function (User $user)  use ($roles) {
-                if (in_array($user->role, $roles)){
+                if (in_array($user->role, $roles)) {
                     return true;
                 }
             });
-        }}
+        }
+    }
 }

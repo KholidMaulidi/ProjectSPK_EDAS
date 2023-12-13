@@ -38,7 +38,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="background-color: #3498db; border: 2px solid #3498db;">Submit</button>
+                    <button type="submit" class="btn btn-primary" style="background: linear-gradient(50deg, #FFA732, #C88EA7); border: 2px solid #C88EA7;">Submit</button>
                 </form>
             </div>
         </div>
