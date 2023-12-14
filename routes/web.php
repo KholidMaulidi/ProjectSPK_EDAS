@@ -52,16 +52,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/matrixCreate', [DecisionMatrixController::class, 'createForm'])->name('decision_matrix.create.form');
     Route::post('/matrixSave', [DecisionMatrixController::class, 'save'])->name('decision_matrix.save');
     Route::get('/matrix', [DecisionMatrixController::class, 'index'])->name('decision_matrix.index');
+    //route ke file hasil
+    route::get('/hasil', function () {
+        return view('hasil');
+    })->name('hasil');
+
+    //route ke profile
+    route::get('/profile', function () {
+        return view('auth.profile');
+    })->name('profile');
 });
-
-
-// Route::get('/register', function () {
-//     return view('auth.register');
-// });
-
-
-
-//route ke file hasil
-route::get('/hasil', function () {
-    return view('hasil');
-}) -> name('hasil');
