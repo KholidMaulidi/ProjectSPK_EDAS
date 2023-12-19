@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}" />
+    @yield('plugins_css')
 </head>
 
 <body>
@@ -17,11 +18,13 @@
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
         @include('Layouts.sidebar')
+        @yield('sidebar')
         <!--  Sidebar End -->
         <!--  Main wrapper -->
         <div class="body-wrapper">
             <!--  Header Start -->
             @include('Layouts.header')
+            @yield('header')
             <!--  Header End -->
             <div class="container-fluid">
                 <div class="col-md-12 d-flex align-items-stretch">

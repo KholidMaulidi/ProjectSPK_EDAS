@@ -1,10 +1,11 @@
 @extends('index')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-5">
+
         <h1>Aggregated Score (AS) Ranking</h1>
 
-        @if(!empty($asValues))
+        @if (!empty($asValues))
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -14,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($ranking as $rank => $idAlternatif)
+                    @foreach ($ranking as $rank => $idAlternatif)
                         <tr>
                             <td>{{ $rank + 1 }}</td>
                             <td>{{ $alternatifNames[$idAlternatif] }}</td>
