@@ -10,7 +10,7 @@
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
 
-        <h1>Data Performance Degree of Agreement (PDA)</h1>
+        <h1>Table NDA</h1>
 
         @if(!empty($ndaTable))
             <table class="table table-bordered">
@@ -25,7 +25,8 @@
                 <tbody>
                     @foreach($ndaTable as $alternatifId => $kriteriaValues)
                         <tr>
-                            <td>{{ $alternatifId }}</td>
+                            {{-- <td>{{ $alternatifId }}</td> --}}
+                            <td>{{ $alternatifNames[$alternatifId] }}</td>
                             @foreach($kriteriaNames as $kriteriaId => $kriteriaName)
                                 <td>{{ $kriteriaValues[$kriteriaId] ?? '' }}</td>
                             @endforeach

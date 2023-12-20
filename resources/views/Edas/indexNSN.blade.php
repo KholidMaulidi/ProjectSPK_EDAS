@@ -9,18 +9,16 @@
                 <thead>
                     <tr>
                         <th>Alternatif</th>
-                        @foreach($nsnValues as $idAlternatif => $nsnValue)
-                            <th>{{ $alternatifNames[$idAlternatif] }}</th>
-                        @endforeach
+                        <th>NSN</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>NSN</td>
-                        @foreach($nsnValues as $nsnValue)
+                    @foreach($nsnValues as $idAlternatif => $nsnValue)
+                        <tr>
+                            <td>{{ $alternatifNames[$idAlternatif] }}</td>
                             <td>{{ $nsnValue }}</td>
-                        @endforeach
-                    </tr>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         @else

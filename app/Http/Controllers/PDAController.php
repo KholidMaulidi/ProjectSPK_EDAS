@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\DecisionMatrix;
 use App\Models\Kriteria;
+use App\Models\Alternatif;
 use Illuminate\Http\Request;
 
 class PDAController extends Controller
@@ -35,11 +36,12 @@ class PDAController extends Controller
         // Ambil nilai rata-rata menggunakan fungsi di AverageController
         $averageTable = $this->averageController->getAverageTable();
 
+        $alternatifNames = Alternatif::pluck('nama_alternatif', 'id')->toArray();
         // Ambil nama kriteria untuk header tabel
         $kriteriaNames = Kriteria::pluck('nama_kriteria', 'id')->toArray();
-
+        
         // Kirim data ke view
-        return view('Edas.indexPda', compact('pdaTable', 'kriteriaNames'));
+        return view('Edas.indexPda', compact('pdaTable', 'kriteriaNames', 'alternatifNames'));
     }
 
     public function calculatePDA($nilai, $idKriteria)

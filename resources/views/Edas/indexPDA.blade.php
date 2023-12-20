@@ -18,6 +18,7 @@
                     <tr>
                         <th>Alternatif</th>
                         @foreach($kriteriaNames as $kriteriaId => $kriteriaName)
+                            
                             <th>{{ $kriteriaName }}</th>
                         @endforeach
                     </tr>
@@ -25,7 +26,8 @@
                 <tbody>
                     @foreach($pdaTable as $alternatifId => $kriteriaValues)
                         <tr>
-                            <td>{{ $alternatifId }}</td>
+                            {{-- <td>{{ $alternatifId }}</td> --}}
+                            <td>{{ $alternatifNames[$alternatifId] }}</td>
                             @foreach($kriteriaNames as $kriteriaId => $kriteriaName)
                                 <td>{{ $kriteriaValues[$kriteriaId] ?? '' }}</td>
                             @endforeach

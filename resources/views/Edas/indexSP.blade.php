@@ -2,25 +2,23 @@
 
 @section('content')
     <div class="container">
-        <h1>Susilo bambang (SP)</h1>
+        <h1>Table SP</h1>
 
         @if(!empty($spValues))
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Alternatif</th>
-                        @foreach($spValues as $idAlternatif => $sp)
-                            <th>{{ $alternatifNames[$idAlternatif] }}</th>
-                        @endforeach
+                        <th>SP</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>SP</td>
-                        @foreach($spValues as $sp)
+                    @foreach($spValues as $idAlternatif => $sp)
+                        <tr>
+                            <td>{{ $alternatifNames[$idAlternatif] }}</td>
                             <td>{{ $sp }}</td>
-                        @endforeach
-                    </tr>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         @else

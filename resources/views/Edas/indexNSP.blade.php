@@ -9,18 +9,16 @@
                 <thead>
                     <tr>
                         <th>Alternatif</th>
-                        @foreach($nspValues as $idAlternatif => $nspValue)
-                            <th>{{ $alternatifNames[$idAlternatif] }}</th>
-                        @endforeach
+                        <th>NSP</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>NSP</td>
-                        @foreach($nspValues as $nspValue)
+                    @foreach($nspValues as $idAlternatif => $nspValue)
+                        <tr>
+                            <td>{{ $alternatifNames[$idAlternatif] }}</td>
                             <td>{{ $nspValue }}</td>
-                        @endforeach
-                    </tr>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         @else

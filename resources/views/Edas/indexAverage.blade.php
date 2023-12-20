@@ -23,7 +23,8 @@
                 <tbody>
                     @foreach($averageTable as $kriteriaId => $averageValue)
                         <tr>
-                            <td>{{ $kriteriaId }}</td>
+                            {{-- <td>{{ $kriteriaId }}</td> --}}
+                            <td>{{ $kriteriaNames[$kriteriaId] }}</td>
                             <td>{{ $averageValue }}</td>
                         </tr>
                     @endforeach

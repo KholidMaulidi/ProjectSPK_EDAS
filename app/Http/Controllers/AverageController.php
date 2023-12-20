@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\DecisionMatrix;
+use App\Models\Kriteria;
 use Illuminate\Http\Request;
 
 class AverageController extends Controller
@@ -10,8 +11,8 @@ class AverageController extends Controller
     {
         // Panggil metode untuk menghitung dan menyusun array nilai average
         $averageTable = $this->getAverageTable();
-
-        return view('Edas.indexAverage', compact('averageTable'));
+        $kriteriaNames = Kriteria::pluck('nama_kriteria', 'id')->toArray();
+        return view('Edas.indexAverage', compact('averageTable', 'kriteriaNames'));
     }
 
     public function getAverageTable()

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\DecisionMatrix;
 use App\Models\Kriteria;
+use App\Models\Alternatif;
 use Illuminate\Http\Request;
 
 class NDAController extends Controller
@@ -35,11 +36,12 @@ class NDAController extends Controller
         // Ambil nilai rata-rata menggunakan fungsi di AverageController
         $averageTable = $this->averageController->getAverageTable();
 
+        $alternatifNames = Alternatif::pluck('nama_alternatif', 'id')->toArray();
         // Ambil nama kriteria untuk header tabel
         $kriteriaNames = Kriteria::pluck('nama_kriteria', 'id')->toArray();
 
         // Kirim data ke view
-        return view('Edas.indexNda', compact('ndaTable', 'kriteriaNames'));
+        return view('Edas.indexNda', compact('ndaTable', 'kriteriaNames', 'alternatifNames'));
     }
 
     public function calculateNDA($nilai, $idKriteria)

@@ -21,6 +21,10 @@
             <form method="post" action="{{ route('kriteria.update', $kriteria->id) }}" id="myForm" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+                <!-- Sembunyikan ID -->
+                <input type="hidden" name="id" value="{{ $kriteria->id }}">
+                <!-- Akhir Sembunyikan ID -->
+
                 <div class="mb-3">
                     <label for="nama_kriteria" class="form-label">Nama Kriteria</label>
                     <input type="text" class="form-control" id="nama_kriteria" name="nama_kriteria" value="{{ $kriteria->nama_kriteria }}" required>

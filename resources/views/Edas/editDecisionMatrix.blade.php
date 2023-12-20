@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{ $kriteriaItem->nama_kriteria }}</td>
                             <td>
-                                <input type="number" name="value[{{ $kriteriaItem->id }}]" value="{{ $matrixTable[$kriteriaItem->id] ?? '' }}" class="form-control">
+                                <input type="number" step="any" name="value[{{ $kriteriaItem->id }}]" value="{{ $matrixTable[$kriteriaItem->id] ?? '' }}" class="form-control">
                             </td>
                         </tr>
                     @endforeach
